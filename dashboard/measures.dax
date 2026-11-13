@@ -1,0 +1,40 @@
+// Power BI measures for the service desk model.
+// Table: tickets (loaded from tickets_dashboard.csv, one row per ticket).
+
+Tickets = COUNTROWS ( tickets )
+
+SLA Met % = DIVIDE ( SUM ( tickets[sla_met] ), [Tickets] )
+
+// The comparable measure proposed in the KPI framework.
+SLA Met % ex Password = CALCULATE ( [SLA Met %], tickets[is_password] = 0 )
+
+SLA Target = 0.9
+
+SLA Breaches = SUM ( tickets[sla_breached] )
+
+Share of Breaches % =
+DIVIDE ( [SLA Breaches], CALCULATE ( [SLA Breaches], ALLSELECTED ( tickets ) ) )
+
+Reassigned % = DIVIDE ( SUM ( tickets[is_reassigned] ), [Tickets] )
+
+Median Resolution Hours = MEDIAN ( tickets[resolution_hours] )
+
+Handle Hours = SUM ( tickets[handle_hours] )
+
+Average Handle Minutes = AVERAGE ( tickets[handle_minutes] )
+
+// Blank scores are ignored, so this is the mean of the replies only.
+Average Satisfaction = AVERAGE ( tickets[csat_score] )
+
+Survey Response % = DIVIDE ( COUNT ( tickets[csat_score] ), [Tickets] )
+
+Ticket Share % = DIVIDE ( [Tickets], CALCULATE ( [Tickets], ALLSELECTED ( tickets ) ) )
+
+// Benefit estimate. Create two what-if parameters (Modeling > New parameter):
+//   Password Deflection  from 0 to 1, step 0.05, default 0.60
+//   Analyst Hourly Cost  from 40 to 80, step 5, default 55
+Password Hours Saved =
+[Password Deflection Value]
+    * CALCULATE ( [Handle Hours], tickets[is_password] = 1 )
+
+Password Saving $ = [Password Hours Saved] * [Analyst Hourly Cost Value]
