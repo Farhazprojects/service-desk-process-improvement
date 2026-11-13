@@ -1,14 +1,43 @@
-# Dashboard build pack: service desk
+# Dashboards: service desk
 
-This folder holds what is needed to build the service desk dashboard in Power BI and in Tableau. The dashboards themselves are not built yet. Power BI Desktop needs Windows, and neither tool was installed on the machine where the analysis was written.
+The Tableau workbook for this project is built and is in `tableau/service_desk_dashboard.twbx`. It has three dashboards. The Power BI version is not built yet, because Power BI Desktop needs Windows. Everything needed to build it is in this folder.
 
 The dashboard is the one described in user story US8 and requirements FR12 and FR13.
+
+## Tableau workbook
+
+Open `tableau/service_desk_dashboard.twbx` in Tableau Public or Tableau Desktop. The data is packaged inside the file as extracts, so nothing else is needed. Click a category on the first page to filter it. On the third page, two sliders change the self-service share and the analyst cost.
+
+I did not build the workbook by dragging fields in Tableau. `tableau/build_workbook.py` writes the workbook file from the dashboard data, and `tableau/twb_builder.py` holds the shared code. Tableau Public only opens workbooks that use extracts, so the script writes each table to a `.hyper` extract with Tableau's Hyper API. After each build I opened the workbook in Tableau Public 2026.3 and compared every page with the check values at the end of this file.
+
+To rebuild it:
+
+```bash
+pip install tableauhyperapi
+python dashboard/tableau/build_workbook.py
+```
+
+To publish it, open the workbook and choose File, then Save to Tableau Public As.
+
+### Service desk overview
+
+![Service desk overview](screenshots/tableau_1_service_desk_overview.png)
+
+### Reassignment
+
+![Reassignment](screenshots/tableau_2_reassignment.png)
+
+### Demand and benefit
+
+![Demand and benefit](screenshots/tableau_3_demand_and_benefit.png)
 
 ## Files
 
 | File | Use |
 |---|---|
 | `data/tickets_dashboard.csv` | One row per ticket, 18,000 rows, with the extra columns below |
+| `tableau/` | Tableau workbook and the scripts that build it |
+| `screenshots/` | Dashboard screenshots |
 | `measures.dax` | Power BI measures |
 | `portfolio_theme.json` | Power BI colour theme |
 
@@ -26,7 +55,7 @@ The CSV is written by `python src/export_dashboard_data.py`. The script checks t
 
 In Power BI, name the table `tickets` and sort `weekday` by `weekday_number`.
 
-## Pages
+## Pages for Power BI
 
 ### Page 1. Service desk overview
 
@@ -60,7 +89,9 @@ The heatmap shows ticket counts for the year. The main README quotes an average 
 
 The benefit cards cover the password change only. The portal form estimate needs a category-by-channel comparison that is easier to keep in the Python script.
 
-## Tableau
+## Tableau calculated fields
+
+These are the calculations used in the workbook, written as you would type them in Tableau. The steps below are for building the same dashboard by hand.
 
 Connect to `tickets_dashboard.csv`. Create two parameters, `Password Deflection` (float, 0 to 1, default 0.6) and `Analyst Hourly Cost` (integer, 40 to 80, default 55). Then create these calculated fields.
 

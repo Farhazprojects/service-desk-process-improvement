@@ -85,6 +85,12 @@ The recommended changes do not reach the 90% target. They close about a quarter 
 
 Resolution time is elapsed hours. A real SLA clock usually pauses outside business hours and while the desk waits for the user. The portal benefit assumes an email ticket moved to the portal behaves like today's portal tickets. That is an association and needs a pilot. The cost figures are placeholders until vendor quotes are in.
 
+## Dashboard
+
+The service desk results are also built as a Tableau workbook with three dashboards. The workbook, screenshots and the Power BI build pack are in the [dashboard](dashboard/README.md) folder.
+
+![Service desk overview](dashboard/screenshots/tableau_1_service_desk_overview.png)
+
 ## How to run the analysis
 
 ```bash
@@ -103,6 +109,7 @@ data/               tickets.csv (synthetic)
 src/                data generator and analysis script
 reports/tables/     KPI and breakdown tables
 reports/figures/    charts
+dashboard/          Tableau workbook, screenshots and Power BI build pack
 ```
 
 ## Business analyst skills shown
