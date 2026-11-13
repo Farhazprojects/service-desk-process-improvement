@@ -1,0 +1,5 @@
+priority,tickets,sla_target_hours,median_resolution_hours,p90_resolution_hours,sla_met_pct
+P1,389,4,2.1,6.9,75.1
+P2,1857,8,4.6,14.8,72.6
+P3,10711,24,8.4,30.8,85.2
+P4,5043,72,25.9,90.9,85.6

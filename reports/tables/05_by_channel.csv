@@ -1,0 +1,4 @@
+channel,tickets,reassigned_pct,sla_met_pct,avg_handle_minutes,avg_csat
+Email,6903,32.23,80.33,31.48,3.92
+Phone,8187,19.23,85.01,28.26,4.04
+Portal,2910,10.48,88.63,25.65,4.12

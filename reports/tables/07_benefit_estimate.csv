@@ -1,0 +1,12 @@
+measure,value
+Password tickets deflected per year,2932.0
+"Agent hours saved, password self-service",482.0
+"Agent hours saved, portal form",398.0
+Total agent hours saved per year,880.0
+Share of current handling hours (%),10.1
+Value of hours saved per year ($),48384.0
+SLA breaches avoided by portal form,372.0
+Current SLA met (%),83.8
+Projected SLA met (%),83.3
+"Current SLA met, excluding password tickets (%)",78.2
+"Projected SLA met, excluding password tickets (%)",81.0

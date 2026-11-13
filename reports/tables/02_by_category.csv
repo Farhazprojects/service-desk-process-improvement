@@ -1,0 +1,8 @@
+category,tickets,handle_hours,sla_met_pct,reassigned_pct,median_resolution_hours,ticket_share_pct,cumulative_share_pct
+Password and account unlock,4887,802.5,98.8,3.6,5.6,27.2,27.2
+Software,3391,2024.1,80.5,25.0,13.0,18.8,46.0
+Hardware,2303,2025.5,77.2,28.9,13.6,12.8,58.8
+Email and calendar,2224,806.2,83.0,16.8,11.8,12.4,71.1
+Access request,2127,1124.6,73.5,44.0,15.1,11.8,83.0
+Network and VPN,1942,1426.1,76.5,36.7,14.4,10.8,93.7
+Other,1126,512.8,75.5,35.0,14.6,6.3,100.0
